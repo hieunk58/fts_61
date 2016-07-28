@@ -13,7 +13,7 @@ class Question < ActiveRecord::Base
 
   validates :content, presence: true, length: {minimum: 2}
   validates_associated  :answers
-  validate :validate_answers
+  # validate :validate_answers
 
   scope :valid_question, -> do
     where("state IS NOT 2")

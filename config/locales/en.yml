@@ -156,6 +156,9 @@ en:
       score: "Your Result: "
       notify_do_exam_title: "Do exam"
       notify_do_exam: "New Exam was created 8 hours ago. Please do your exam!"
+      statistic_result: "Statistic Result"
+      statistic_notify: "You have finish %{exams} exams this month! Keep up your good work"
+      exam_index: "Exam "
     social_login:
       google: "Sign in with Google"
       facebook: "Sign in with Facebook"

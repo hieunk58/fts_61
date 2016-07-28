@@ -44,6 +44,7 @@ gem "sidekiq"
 gem "letter_opener"
 gem "delayed_job_active_record"
 gem "daemons"
+gem "whenever", require: false
 
 group :development, :test do
   gem "sqlite3"

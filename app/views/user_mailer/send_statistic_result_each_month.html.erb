@@ -1,0 +1,8 @@
+<h4><%= t("views.user_mailer.statistic_notify", exams: @exams.count) %></h4>
+<% @exams.each_with_index do |exam, index| %>
+  <p>
+    <strong><%= t "views.user_mailer.exam_index" %><%= index + 1 %></strong>
+    <%= exam.results.is_corrects.count %>/
+    <%= exam.subject.total_question %>
+  </p>
+<% end %>

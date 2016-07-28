@@ -16,6 +16,11 @@ class Examination < ActiveRecord::Base
   after_save :notify_user
   after_update :update_delayed_job
 
+  def self.send_statistic_result
+    @exams = Examination.where(user_id: self.user.id)
+    UserMailer.send_statistic_result_each_month(@exams, self.user).deliver_now
+  end
+
   private
   def create_question
     self.questions << self.subject.questions.valid_question.shuffle
@@ -30,7 +35,9 @@ class Examination < ActiveRecord::Base
   def update_delayed_job
     time_from_create_exam = self.updated_at - self.created_at
     if time_from_create_exam.to_i < Settings.time_to_notify
-      Delayed::Job.find_by(created_at: self.created_at).delete
+      if Delayed::Job.find_by(created_at: self.created_at).present?
+        Delayed::Job.find_by(created_at: self.created_at).delete
+      end
     end
   end
 end
